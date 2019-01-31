@@ -23,22 +23,21 @@ function Game(){
     Apartment();
     
     function Apartment(){
-        var bedroom1 = prompt("You wake up... Your head is pounding, but you are lying on something comfortable. It takes a couple minutes of tossing and turning, but eventually you decide that you can't go back to sleep. You open your eyes.  Who's room is this? /n -look around /n -go back to bed /n -open door /n - look out window").toLowerCase();
+        var bedroom1 = prompt("You wake up... Your head is pounding, but you are lying on something comfortable. It takes a couple minutes of tossing and turning, but eventually you decide that you can't go back to sleep. You open your eyes.  Who's room is this? /n -look around /n -go back to bed").toLowerCase();
         
         if(bedroom1 == "look around" || bedroom1 == "look"){
             var bedroom1Look = prompt("The room is lit up by a large window to your left.  The room is brightly colored and almost playful looking.  There is a nightstand beside the bed you slept in. On top of the nightstand is a picture. There is a door to the right of you. Everything is eerily quiet.");
-           var resume = confirm
-            if(resume){
-                Apartment();
-            }
-        }
+        
         if(bedroom1 == "look at picture"){
-            var bedroom1picture = prompt("You pick up the picture to get a better look at it.  Its a family of 4 little girls and their parents.  They seem to be having a good time at a park or something. are these the owners of this room? You have no idea and recognize none of the faces.");
-            var resume = confirm
-            if(resume){
-                Apartment();
-            }
+            prompt("You pick up the picture to get a better look at it.  Its a family of 4 little girls and their parents.  They seem to be having a good time at a park or something. are these the owners of this room? You have no idea and recognize none of the faces.");
         }
+            else if(bedroom1 == "throw picture"){
+                alert("You threw the picture and the glass shatters, breaking the silence. You just destroyed the one thing these people cannot replace.  Good job.");
+                }
+                else{
+                    alert("please leave these innocent people's cherished memories alone.");
+                }
+            }
         if(bedroom1 == "look out window" || bedroom1 == "window"){
             var bedroom1Window = prompt("You wander to the window. It appears that you are in a city, something that should be full of human life. But the streets are completely desolate, cars have been tipped over, and there is not a single thing to be heard or seen.  What happened when you fell asleep?");
             var resume = confirm
@@ -63,7 +62,9 @@ function Game(){
                 alert("Boring. Game over."); 
             }
         }
-
+            else{
+                alert("I don't know what"+bedroom1+"is.")
+            }
      
          
  }
@@ -72,5 +73,22 @@ function Game(){
     if(hallway == "look around" || hallway == "look"){
         var hallwaylook = prompt("A hallway. There are stairs to the right and a door to the left in this hallway and a window at the end of it.")
     }
+     if(hallway == "open door" || hallway == "go left"){
+        alert("the door is locked.  You absolutely cannot open it without a key. No matter how many times you slam yourself against it.");
+     }
+                    var resume = confirm
+            if(resume){
+                Hallway();
+            }
+        
+        if(hallway == "go right"){
+             var resume = confirm
+            if(resume){
+                KitchenRoom();
+                }
+        }
+    }
+    function KitchenRoom(){
+        var stairview = prompt("You are downstairs. It appears to be an open floor kitchen and living room.  Suprisingly, there is no hum from the fridge, and the kitchen appliances don't seem to have any energy in them. There is a long table with a couple of items on it, and a comfy seeming couch. There is also a door leading out of the apartment.");
     }
 }
