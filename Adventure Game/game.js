@@ -13,12 +13,22 @@ multiline comment
 
 // var pc = prompt("What is your name?");
 Game();
+   //<body>
+      // <script>
+       //javascript for inventory
+        var inventory = {
+            Bat: 0,
+            Keys: 0,
+            Food: 0,
+            Money: 0,
+            
+        }
 
 function Game(){
     
     document.write("Inflicted");
     var playerName = prompt("What is your name?");
-    alert("Welcome to the City, " + playerName);
+    alert("Welcome to the City, " + playerName +".");
    
     Apartment();
     
@@ -27,13 +37,12 @@ function Game(){
         
         if(bedroom1 == "look around" || bedroom1 == "look"){
             var bedroom1Look = prompt("The room is lit up by a large window to your left.  The room is brightly colored and almost playful looking.  There is a nightstand beside the bed you slept in. On top of the nightstand is a picture. There is a door to the right of you. Everything is eerily quiet.");
-        
         if(bedroom1 == "look at picture"){
-            prompt("You pick up the picture to get a better look at it.  Its a family of 4 little girls and their parents.  They seem to be having a good time at a park or something. are these the owners of this room? You have no idea and recognize none of the faces.");
+            alert("You pick up the picture to get a better look at it.  Its a family of 4 little girls and their parents.  They seem to be having a good time at a park or something. are these the owners of this room? You have no idea and recognize none of the faces.");
         }
             else if(bedroom1 == "throw picture"){
                 alert("You threw the picture and the glass shatters, breaking the silence. You just destroyed the one thing these people cannot replace.  Good job.");
-                }
+            }
                 else{
                     alert("please leave these innocent people's cherished memories alone.");
                 }
@@ -75,11 +84,12 @@ function Game(){
     }
      if(hallway == "open door" || hallway == "go left"){
         alert("the door is locked.  You absolutely cannot open it without a key. No matter how many times you slam yourself against it.");
-     }
+       
                     var resume = confirm
             if(resume){
                 Hallway();
             }
+     }
         
         if(hallway == "go right"){
              var resume = confirm
@@ -87,8 +97,27 @@ function Game(){
                 KitchenRoom();
                 }
         }
+        if(hallway == "use key on door" && inventory.key >= 1){
+            var doorOpen = prompt("You'd be suprised how much easier it is to open a door with a key instead of just slamming yourself against it.  The door opens with so much ease that even you would wonder if the bruises are where worth slamming your body weight against it.")
+            
+        }
     }
+   
     function KitchenRoom(){
         var stairview = prompt("You are downstairs. It appears to be an open floor kitchen and living room.  Suprisingly, there is no hum from the fridge, and the kitchen appliances don't seem to have any energy in them. There is a long table with a couple of items on it, and a comfy seeming couch. There is also a door leading out of the apartment.");
+    
+        if(stairview == "look at table" || stairview == "table"){
+            var table = prompt("A long fancy wood table. There is a key on the table.");
+            
+        }
+        if(stairview == "take key" || stairview == "key"){
+        //adds key
+            inventory.key ++; 
+            alert("you own " +inventory.key+"keys"); 
+        //takes money out of account inventory.coins = inventory.coins - 100; inventory.coins -=100; alert("you have " +inventory.coins+"coins remaining"); 
+        }
+    }
+     function Bedroom2(){
+        var closet
     }
 }
