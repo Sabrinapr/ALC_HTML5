@@ -13,8 +13,8 @@ multiline comment
 
 // var pc = prompt("What is your name?");
 
-   //<body>
-      // <script>
+//<body>
+       //<script>
        
 //<h1>Inflicted v1.0
 //<p>Made by: Sabrina Ciel Pray
@@ -41,8 +41,17 @@ function Game(){
 
         switch(bedroom1){
             case "look around" || "look":
-            var bedroom1Look = prompt("The room is lit up by a large window to your left.  The room is brightly colored and almost playful looking.  There is a nightstand beside the bed you slept in. On top of the nightstand is a picture. There is a door to the right of you. Everything is eerily quiet.");
-        
+            var bedroom1Look = prompt("The room is lit up by a large window to your left.  The room is brightly colored and almost playful looking.  There is a nightstand beside the bed you slept in. On top of the nightstand is a picture. There is a door to the right of you. Everything is eerily quiet.")
+                if(bedroom1 == "look at picture")
+           alert("You pick up the picture to get a better look at it.  Its a family of 4 little girls and their parents.  They seem to be having a good time at a park or something. are these the owners of this room? You have no idea and recognize none of the faces.");
+            
+            else if(bedroom1 == "throw picture"){
+                alert("You threw the picture and the glass shatters, breaking the silence. You just destroyed the one thing these people cannot replace.  Good job.");
+            }
+                else{
+                    alert("please leave these innocent people's cherished memories alone.");
+                }
+            
                 Apartment();
         break;
             case "look out window" || "window":
@@ -65,11 +74,13 @@ function Game(){
                 alert("Boring. Game over."); 
             }
         
-            //else if{
+        
+            //else{
                 //alert("I don't know what"+bedroom1+"is.")
+                //Apartment();
             //}
         }
-        
+    }
         //if(bedroom1 == "look at picture"){
           //  alert("You pick up the picture to get a better look at it.  Its a family of 4 little girls and their parents.  They seem to be having a good time at a park or something. are these the owners of this room? You have no idea and recognize none of the faces.");
             //else if(bedroom1 == "throw picture"){
@@ -78,7 +89,7 @@ function Game(){
                     //alert("please leave these innocent people's cherished memories alone.");
      
          
- }
+ 
     function Hallway(){
         var hallway = prompt("There are stairs to the right and a door to the left in this hallway.");
     if(hallway == "look around" || hallway == "look"){
@@ -110,8 +121,9 @@ function Game(){
             inventory.keys ++; 
             alert("you own " +inventory.key+"keys"); 
            //else{
-               //alert("You think the key might go to the door upstairs.");
+              // alert("You think the key might go to the door upstairs.");
                KitchenRoom();
+           
         }
         //takes money out of account inventory.coins = inventory.coins - 100; inventory.coins -=100; alert("you have " +inventory.coins+"coins remaining"); 
         }
@@ -119,7 +131,12 @@ function Game(){
      function Bedroom2(){
         var enterRoom = prompt("You enter the locked room.  There is a king sized bed in the middle of the room with a bedstand that has something on it and a closet in the corner. Maybe this was the parents bedroom? You have no idea.");
          if(enterRoom == "look in closet" || enterRoom == "closet"){
-             var closet = prompt("The closet is completely empty.  Except for the bat leaning against one side.  Its a plain wooden bat, but it could be useful in any struggle you might have.  Which you probably wouldn't.")
+             var closet = prompt("The closet is completely empty.  Except for the bat leaning against one side.  Its a plain wooden bat, but it could be useful in any struggle you might have.  Which you probably wouldn't.");
+             if(closet == "take bat" || closet == "bat"){
+             inventory.Bat ++; 
+            alert("you own " +inventory.Bat+" Bats"); 
+                Bedroom2();
          }
     }
+}
 }
