@@ -123,15 +123,19 @@ function Game(){
            //else{
               // alert("You think the key might go to the door upstairs.");
                KitchenRoom();
-           
         }
+           break;
+            case "open door":
+            alert("You walk out into another hallway, but this one is full of doors.  You are very obviously in an apartment complex, so you figure the rest of the doors will be locked.  You move downstairs.");
+            Lobby();
+        
         //takes money out of account inventory.coins = inventory.coins - 100; inventory.coins -=100; alert("you have " +inventory.coins+"coins remaining"); 
         }
     }
      function Bedroom2(){
         var enterRoom = prompt("You enter the locked room.  There is a king sized bed in the middle of the room with a bedstand that has something on it and a closet in the corner. Maybe this was the parents bedroom? You have no idea.");
          if(enterRoom == "look in closet" || enterRoom == "closet"){
-             var closet = prompt("The closet is completely empty.  Except for the bat leaning against one side.  Its a plain wooden bat, but it could be useful in any struggle you might have.  Which you probably wouldn't.");
+             var closet = prompt("The closet is completely empty.  Except for the bat leaning against one side.  Its a plain wooden bat, but it could be useful in any struggle you might have.  It would be awful if you actually had to fight anything, however.");
              if(closet == "take bat" || closet == "bat"){
              inventory.Bat ++; 
             alert("you own " +inventory.Bat+" Bats"); 
@@ -139,4 +143,26 @@ function Game(){
          }
     }
 }
+    function Lobby(){
+        var snackies = ["Chips", "Cookies", "Soda"];
+        var downstairs = prompt("This must be the lobby and main offices of this building, but it has been visiably upturned and most likely robbed.  There is a snack bar in the corner. You luckily find"+snakies[Math.floor(Math.random()* 3)]+" and realize how hungry you are.  You decide the best idea is to eat this snack. After all, any food is free food if no one sees you take it.")
+        if (downstairs == "look"|| "look around"){
+            alert("It's a lobby.  There is a door leading outside to your right, and a door labeled *pool* to your left.");
+        }
+            if (downstairs == "go right"){
+               Outside();
+            }
+        if (downstairs == "go left"){
+            PoolRoom();
+        }
+    }
+    function Outside(){
+        var street = prompt("You step outside into a desolate and deserted street.  There is a hint of a different smell in the air, but you can't seem to place it.  Where is everyone?");
+        if(street == "look around"|| "look"){
+            alert("That smell is here, but you dont know what its from.  It's not awfully familliar. The street goes right to left, but there is also a dark alleyway in front of you.  /-forward /-backward")
+        }
+        if(street == "right"){
+            alert("You walk down the street, only to find a police blockade.  You get the feeling it would be unwise to go past it, so you dont.");
+        }
+    }
 }
