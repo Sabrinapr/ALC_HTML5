@@ -15,6 +15,7 @@ multiline comment
 
 //<body>
        //<script>
+//NEEDS SCRIPT FOR LET AND CONSTANT!!!
        
 //<h1>Inflicted v1.0
 //<p>Made by: Sabrina Ciel Pray
@@ -97,42 +98,19 @@ function Game(){
     }
      if(hallway == "open door" || hallway == "go left"){
         alert("the door is locked.  You absolutely cannot open it without a key. No matter how many times you slam yourself against it.");
-       
+     
                 Hallway();
-            }
+     }
         
         if(hallway == "go right"){
                 KitchenRoom();
                 }
         if(hallway == "use key on door" && inventory.key >= 1){
-            var doorOpen = prompt("You'd be suprised how much easier it is to open a door with a key instead of just slamming yourself against it.  The door opens with so much ease that even you would wonder if the bruises are where worth slamming your body weight against it.")
+            var doorOpen = prompt("You'd be suprised how much easier it is to open a door with a key instead of just slamming yourself against it.  The door opens with so much ease that even you would wonder if the bruises are where worth slamming your body weight against it.");
             Bedroom2();
         }
     }
-   
-    function KitchenRoom(){
-        var stairview = prompt("You are downstairs. It appears to be an open floor kitchen and living room.  Suprisingly, there is no hum from the fridge, and the kitchen appliances don't seem to have any energy in them. There is a long table with a couple of items on it, and a comfy seeming couch. There is also a door leading out of the apartment.");
-    switch(stairview){
-        case "look at table" || "table":
-            prompt("A long fancy wood table. There is a key on the table.");
-            
-        if(stairview == "take key" || stairview == "key"){
-        //adds key
-            inventory.keys ++; 
-            alert("you own " +inventory.key+"keys"); 
-           //else{
-              // alert("You think the key might go to the door upstairs.");
-               KitchenRoom();
-        }
-           break;
-            case "open door":
-            alert("You walk out into another hallway, but this one is full of doors.  You are very obviously in an apartment complex, so you figure the rest of the doors will be locked.  You move downstairs.");
-            Lobby();
-        
-        //takes money out of account inventory.coins = inventory.coins - 100; inventory.coins -=100; alert("you have " +inventory.coins+"coins remaining"); 
-        }
-    }
-     function Bedroom2(){
+        function Bedroom2(){
         var enterRoom = prompt("You enter the locked room.  There is a king sized bed in the middle of the room with a bedstand that has something on it and a closet in the corner. Maybe this was the parents bedroom? You have no idea.");
          if(enterRoom == "look in closet" || enterRoom == "closet"){
              var closet = prompt("The closet is completely empty.  Except for the bat leaning against one side.  Its a plain wooden bat, but it could be useful in any struggle you might have.  It would be awful if you actually had to fight anything, however.");
@@ -143,9 +121,33 @@ function Game(){
          }
     }
 }
-    function Lobby(){
+   
+    function KitchenRoom(){
+        var stairview = prompt("You are downstairs. It appears to be an open floor kitchen and living room.  Suprisingly, there is no hum from the fridge, and the kitchen appliances don't seem to have any energy in them. There is a long table with a couple of items on it, and a comfy seeming couch. There is also a door leading out of the apartment.");
+           if(stairview == "open door"){
+            alert("You walk out into another hallway, but this one is full of doors.  You are very obviously in an apartment complex, so you figure the rest of the doors will be locked.  You move downstairs.");
+           
+    
+        //takes money out of account inventory.coins = inventory.coins - 100; inventory.coins -=100; alert("you have " +inventory.coins+"coins remaining"); 
+        }
+        
+        if(stairview == "look at table" || stairview == "table"){
+            prompt("A long fancy wood table. There is a key on the table.");
+            
+        //if(stairview == "take key" || stairview == "key"){
+        //adds key
+            //inventory.keys ++; 
+           // alert("you own " +inventory.key+"keys"); 
+           //else{
+              // alert("You think the key might go to the door upstairs.");
+               KitchenRoom();
+        //}
+   }
+ 
+    }
+    function MainOffice(){
         var snackies = ["Chips", "Cookies", "Soda"];
-        var downstairs = prompt("This must be the lobby and main offices of this building, but it has been visiably upturned and most likely robbed.  There is a snack bar in the corner. You luckily find"+snakies[Math.floor(Math.random()* 3)]+" and realize how hungry you are.  You decide the best idea is to eat this snack. After all, any food is free food if no one sees you take it.")
+        var downstairs = prompt("This must be the lobby and main offices of this building, but it has been visiably upturned and most likely robbed.  There is a snack bar in the corner. You luckily find"+snakies[Math.floor(Math.random()* 3)]+" and realize how hungry you are.  You decide the best idea is to eat this snack. After all, any food is free food if no one sees you take it.");
         if (downstairs == "look"|| "look around"){
             alert("It's a lobby.  There is a door leading outside to your right, and a door labeled *pool* to your left.");
         }
@@ -156,13 +158,28 @@ function Game(){
             PoolRoom();
         }
     }
+    function PoolRoom(){
+        var responses = ["Swimming? At a time like this?", "Getting your clothes wet is not going to help you.", "65910", "You might as well just drown if this is how you're gonna play."];
+        var pool = prompt("It's an average size tiled room with a pool.  What did you expect?");
+        if(pool == "swim"){
+            alert(responses[Math.floor(Math.random()* 4)])
+        }
+    }
     function Outside(){
         var street = prompt("You step outside into a desolate and deserted street.  There is a hint of a different smell in the air, but you can't seem to place it.  Where is everyone?");
         if(street == "look around"|| "look"){
-            alert("That smell is here, but you dont know what its from.  It's not awfully familliar. The street goes right to left, but there is also a dark alleyway in front of you.  /-forward /-backward")
+            alert("That smell is here, but you dont know what its from.  It's not awfully familliar. The street goes right to left, but there is also a dark alleyway in front of you.  /-forward /-backward");
         }
         if(street == "right"){
             alert("You walk down the street, only to find a police blockade.  You get the feeling it would be unwise to go past it, so you dont.");
         }
+        if(street == "left"){
+            //time for gannng
+        }
+        
+        if(street == "forward"||"go forward"){
+            var firstfight = prompt("The smell increases and it's not a smell one enjoys.  It comes to a point where the smell is so rancid you almost feel like you can't breathe. As your eyes adjust to the darkness, you finally identify what the smell is.                                       Rotting Flesh.   In front of you, horrifyingly, is a dead body.  That is moving.  Towards you.");
+            //work on fight script
+        }
+        }
     }
-}
