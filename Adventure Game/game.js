@@ -22,12 +22,19 @@ multiline comment
 //<script>
 //javascript for inventory
 var inventory = {
-            Bat: 0,
+            bat: 0,
             keys: 0,
-            Food: 0,
-            Money: 0,
+            food: 0,
+            money: 0,
             
         }
+
+function GetRandInt(max){
+	var randInt = Math.floor(Math.random()* Math.floor(max));
+
+	return randInt;
+
+}
 Game();
 function Game(){
     
@@ -126,35 +133,40 @@ function Game(){
         var stairview = prompt("You are downstairs. It appears to be an open floor kitchen and living room.  Suprisingly, there is no hum from the fridge, and the kitchen appliances don't seem to have any energy in them. There is a long table with a couple of items on it, and a comfy seeming couch. There is also a door leading out of the apartment.");
            if(stairview == "open door"){
             alert("You walk out into another hallway, but this one is full of doors.  You are very obviously in an apartment complex, so you figure the rest of the doors will be locked.  You move downstairs.");
-           
+           MainOffice();
     
         //takes money out of account inventory.coins = inventory.coins - 100; inventory.coins -=100; alert("you have " +inventory.coins+"coins remaining"); 
         }
         
         if(stairview == "look at table" || stairview == "table"){
             prompt("A long fancy wood table. There is a key on the table.");
-            
-        //if(stairview == "take key" || stairview == "key"){
+            KitchenRoom();
+        }
+        if(stairview == "take key" || stairview == "key"){
         //adds key
-            //inventory.keys ++; 
+            inventory.keys +1; 
            // alert("you own " +inventory.key+"keys"); 
            //else{
-              // alert("You think the key might go to the door upstairs.");
+               //alert("You think the key might go to the door upstairs.");
                KitchenRoom();
-        //}
+        }
+   if(stairview == "upstairs" || stairview == "go back"){
+       Hallway();
    }
  
     }
+ 
     function MainOffice(){
-        var snackies = ["Chips", "Cookies", "Soda"];
-        var downstairs = prompt("This must be the lobby and main offices of this building, but it has been visiably upturned and most likely robbed.  There is a snack bar in the corner. You luckily find"+snakies[Math.floor(Math.random()* 3)]+" and realize how hungry you are.  You decide the best idea is to eat this snack. After all, any food is free food if no one sees you take it.");
-        if (downstairs == "look"|| "look around"){
+        var downstairs = prompt("This must be the lobby and main offices of this building, but it has been visiably upturned and most likely robbed.  There is a snack bar in the corner. You luckily find some snacks and realize how hungry you are.  You decide the best idea is to eat them. After all, any food is free food if no one sees you take it.");
+        switch(downstairs){
+            case "look"|| "look around":
             alert("It's a lobby.  There is a door leading outside to your right, and a door labeled *pool* to your left.");
-        }
-            if (downstairs == "go right"){
+            MainOffice();
+        break;
+            case "go right":
                Outside();
-            }
-        if (downstairs == "go left"){
+            break;
+            case "go left":
             PoolRoom();
         }
     }
@@ -162,7 +174,11 @@ function Game(){
         var responses = ["Swimming? At a time like this?", "Getting your clothes wet is not going to help you.", "65910", "You might as well just drown if this is how you're gonna play."];
         var pool = prompt("It's an average size tiled room with a pool.  What did you expect?");
         if(pool == "swim"){
-            alert(responses[Math.floor(Math.random()* 4)])
+            alert(responses[Math.floor(Math.random()* 4)]);
+            PoolRoom();
+        }
+        if(pool == "go back"){
+            MainOffice();
         }
     }
     function Outside(){
@@ -174,7 +190,8 @@ function Game(){
             alert("You walk down the street, only to find a police blockade.  You get the feeling it would be unwise to go past it, so you dont.");
         }
         if(street == "left"){
-            //time for gannng
+            alert("You turn left and walk down the street.  Suddenly, you hear rustling and voices. *Hello.  Who are you?* one of the voices asks and cocks a gun behind your head.  Other people crawl out from behind cars and walk out of buildings.  As much as it is relieving to see all these alive people, they are still holding a gun to your head.  *What do you think y'all? Should we take this one in?* The one hoding the gun says. The rest of this group stays silent. *I'll take that as a yes then.  I'm going to need you to answer a couple questions, newcomer.*");
+            Questioning();
         }
         
         if(street == "forward"||"go forward"){
@@ -182,4 +199,24 @@ function Game(){
             //work on fight script
         }
         }
+   function Questioning(){
+       prompt("Do you know who you are?");
+       prompt("Are you a liar?");
+       prompt("Do you consider yourself intelligent?");
+       prompt("Will you fight for someone you don’t trust in a dangerous situation?");
+       prompt("Are you loyal?");
+       prompt("have you ever killed anyone?");
+       prompt("would you trust me?");
+      if("yes"){
+                Crew();
+            }
+            else{
+                alert("ou pissed off the the leader of the group you encountered somehow. Good job idiot."); 
+                Alone();
+            }
+   }
+    function Crew(){
+        alert("You seemed to have pleased the leader.  Guess that means you are with them now?")
     }
+}
+
