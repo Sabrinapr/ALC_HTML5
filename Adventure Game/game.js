@@ -191,7 +191,7 @@ function Game(){
     function MainOffice(){
         var downstairs = prompt("This must be the lobby and main offices of this building, but it has been visiably upturned and most likely robbed.");
         switch(downstairs){
-            case "look around":
+            case "look around" || "look":
             alert("It's a lobby.  There is a door leading outside to your right, and a door labeled *pool* to your left.");
             MainOffice();
         break;
@@ -228,11 +228,11 @@ function Game(){
             alert("That smell is here, but you dont know what its from.  It's not awfully familliar. The street goes right to left, but there is also a dark alleyway in front of you.  /-forward /-backward /-right /-left");
             Outside();
         break;
-            case "right":
+            case "go right":
             alert("You walk down the street, only to find a police blockade.  You get the feeling it would be unwise to go past it, so you dont.");
             Outside();
         break;
-            case "left":
+            case "go left":
             alert("You turn left and walk down the street.  Suddenly, you hear rustling and voices. *Hello.  Who are you?* one of the voices asks and cocks a gun behind your head.  Other people crawl out from behind cars and walk out of buildings.  As much as it is relieving to see all these alive people, they are still holding a gun to your head.  *What do you think y'all? Should we take this one in?* The one hoding the gun says. The rest of this group stays silent. *I'll take that as a yes then.  I'm going to need you to answer a couple questions, newcomer.*");
             Questioning();
         break;
@@ -306,6 +306,10 @@ function Game(){
                 break;
             case "go foward"||"downstairs":
                 Kitchen();
+                break;
+            default:
+                alert("I do not understand " + way);
+                        Hallwayv1();
         }
     }
     function Traproom(){
@@ -322,6 +326,7 @@ function Game(){
                 Traproomv2();
             }
             else{
+                
                 Killed(); 
             }
         break;
@@ -331,6 +336,86 @@ function Game(){
     }
     }
     function Traproomv2(){
+        var masks = prompt("You can now get to the masks without alerting the crew.");
+        if(masks == "take bunny mask"){
+            alert("You put the bunny mask on. It doesn't quite feel right. It's bulky, and doesn't quite fit your head, so you put it back down on the table.");
+        }
         
+        if(masks == "take bird mask"){
+            alert("This mask feel like it was made for you.  It slides on easily for a full head mask, and you see a couple things light up inside it.  You decide to take the mask.");
+            alert("You are now wearing a mask.  This may or may not affect people actions toward you in the future.");
+            alert("You return to your room. But for some reason, you didn't want to take the bird mask off.  It seemed to... speak to you?  You had no idea.  You just had no will to take it off.");
+            Confrontation();
+        }
+    }
+    function Killed(){
+        alert("You have been killed by your own stupidity.  Try again?")
+        if(resume){
+                Apartment();
+            }
+            else{
+                alert("Boring. Game over."); 
+            }
+    }
+    function Bunny(){
+        var receive = prompt("You wake up refreshed in the morning and open the door into the hallway.");
+     switch(receive){
+            case "left":
+                alert("you open the door with ease. there seems to be someone who has a bird mask of sorts in a chair in the corner.  “What are you doing?  Get out of my room.” They say.  Their voice was clearly shaking. but you decide against pressing further and get out.");
+                break;
+            case "right":
+                alert("The door is locked. I wouldn't suggest slamming yourself against it like last time.");
+                break;
+            case "go foward"||"downstairs":
+                Kitchenv2();
+                break;
+            default:
+                alert("I do not understand " + receive);
+                        Bunny();
+        }
+    }
+    function Kitchen(){
+        var keeeeyss = prompt("you go downstairs.  It looks very much like the apartment you woke up in last time.");
+        switch(keeeeyss){
+            case "look around":
+                alert("Its got an open bar style kitchen.  But this place seems to have electricity.  You wonder how they are getting it. There is stuff on the table.");
+                Kitchen();
+                break;
+            case "look at table":
+                alert("There is a key on the table.  And a blue jacket.");
+                Kitchen();
+                break;
+            case "take key":
+                alert("you took the key off the table.");
+                 //adds key
+            inventory.key ++; 
+                //displays keys taken
+           alert("you own " +inventory.key+" keys"); 
+                Kitchen();
+                break;
+            case "take jacket":
+                alert("You stole someone's jacket.  Real classy.");
+                Kitchen();
+                break;
+            case "backwards" || "go back":
+                Hallwayv1();
+        }
+    }
+    function Kitchenv2(){
+        var buUN = prompt("You go downstairs. It looks very much like the apartment you woke up in last time.  But this time it's filled with life.  The crew aparently woke up early.  and made pancakes.  which they are eating without you.  The gasmasked individual turns to you and beckons you into the kitchen.  “Join us," + nameAsk+".  It's time you learned a little about what happened and who we are.” Somebody wearing a pig mask slides you a plate of pancakes. “The impossible happened.  Somebody on the government allowed their scientist to experiment with diseases in their underground lab.  So the upper world has been inflicted with the disease and there is a huge, growing population of undead, rotting folks.  So we are trying to survive and honestly make a profit off the living and the abandoned.  There are still many living groups of people, suprisingly.  They run underground cities that trade resources and pay people like us to grab what we can of what's left of civilization.  So,  would you like to join us?”");
+        if(buUN == "yes"){
+            alert("The gas mask hands you a mask.  It's a bunny mask, with a HAZARD symbol on the forehead.“This is the bunny mask.  It stands for not only someone who is willing to sacrifice, but someone who is clever.” The gas mask tells you. “Now that you have a mask, are you ready to go on your first gathering mission?”");
+            MissionStart();
+        }
+        if(buUN == "no"){
+            alert("“That was not the correct response.” You can hear the person behind the gasmask smiling. They stick a knife in your gut. “And you had so much potential.”");
+            Killed();
+        }
+    }
+    function Confrontation(){
+        var findout = prompt("“Good morning new recruit.” someone says as they shake you awake. “What are you wearing?” You turn in the bed to see the gasmask in front of your face.  Which causes you to jump a little bit.  It's not a pleasant sight to wake up too.“How did you get that mask?”");
+    }
+    function MissionStart(){
+        var letgo
     }
 }
