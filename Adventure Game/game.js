@@ -22,13 +22,14 @@ multiline comment
 //<script>
 //javascript for inventory
 var inventory = {
-            bat:0,
-            keys:0,
-            food:0,
-            coins:100,
-            
-        }
-
+                key:0,
+                bat:0,
+                money:0,
+            }
+ var weakZombie = {
+                health:20,
+                damage:5,
+            }
 	
 
 function GetRandInt(max){
@@ -83,23 +84,18 @@ function Game(){
             else{
                 alert("Boring. Game over."); 
             }
-        
-        
-            //else{
-                //alert("I don't know what"+bedroom1+"is.")
-                //Apartment();
-            //}
+            
+        break;
+            case "look at picture":
+            alert("You pick up the picture to get a better look at it.  Its a family of 4 little girls and their parents.  They seem to be having a good time at a park or something. are these the owners of this room? You have no idea and recognize none of the faces.");
+                Apartment();
+        break;
+            default:
+                alert("I don't know what"+ bedroom1 +"is.");
+                Apartment();
         }
     }
-        //if(bedroom1 == "look at picture"){
-          //  alert("You pick up the picture to get a better look at it.  Its a family of 4 little girls and their parents.  They seem to be having a good time at a park or something. are these the owners of this room? You have no idea and recognize none of the faces.");
-            //else if(bedroom1 == "throw picture"){
-                //alert("You threw the picture and the glass shatters, breaking the silence. You just destroyed the one thing these people cannot replace.  Good job.");
-                //else{
-                    //alert("please leave these innocent people's cherished memories alone.");
-     
-         
- 
+    
     function Hallway(){
         var hallway = prompt("There are stairs to the right and a door to the left in this hallway.");
     if(hallway == "look around" || hallway == "look"){
@@ -115,30 +111,54 @@ function Game(){
                 KitchenRoom();
                 }
         if(hallway == "use key on door" && inventory.key >= 1){
+            //takes key out of account 
+            inventory.key = inventory.key - 1;
+            alert("You have "+inventory.key+" keys remaining")
             var doorOpen = prompt("You'd be suprised how much easier it is to open a door with a key instead of just slamming yourself against it.  The door opens with so much ease that even you would wonder if the bruises are where worth slamming your body weight against it.");
             Bedroom2();
+        }
+        else{
+            alert("I don't know what "+ hallway +" is.");
+                Hallway();
         }
     }
         function Bedroom2(){
         var enterRoom = prompt("You enter the locked room.  There is a king sized bed in the middle of the room with a bedstand that has something on it and a closet in the corner. Maybe this was the parents bedroom? You have no idea.");
-         if(enterRoom == "look in closet" || enterRoom == "closet"){
+         if(enterRoom == "look at bedstand" || enterRoom == "bedstand"){
+            var money = prompt("There appears to be a couple twenty dollar bills on top of the bedstand. Nobody is around.");
+            if(money == "take money"){
+                alert("You just stole about 100 dollars from people who presumably took you in. Thief.");
+                inventory.money = inventory.money + 100;
+                alert("You own " +inventory.money+"  dollars");
+                Bedroom2();
+            }
+            else{
+                alert("You might have needed the money, but you left it. Like some sort of person with morals.");
+                Bedroom2();
+            }
+         }
+            if(enterRoom == "look in closet" || enterRoom == "closet"){
              var closet = prompt("The closet is completely empty.  Except for the bat leaning against one side.  Its a plain wooden bat, but it could be useful in any struggle you might have.  It would be awful if you actually had to fight anything, however.");
              if(closet == "take bat" || closet == "bat"){
-             inventory.Bat ++; 
-            alert("you own " +inventory.Bat+" Bats"); 
+             inventory.bat ++; 
+            alert("you own " +inventory.bat+" Bats"); 
                 Bedroom2();
          }
+             else{
+                 alert("I don't know what "+ enterRoom +" is.");
+                Bedroom2();
     }
 }
+            if(enterRoom == "go back" || enterRoom == "leave"){
+                Hallway();
+            }
+        }
    
     function KitchenRoom(){
         var stairview = prompt("You are downstairs. It appears to be an open floor kitchen and living room.  Suprisingly, there is no hum from the fridge, and the kitchen appliances don't seem to have any energy in them. There is a long table with a couple of items on it, and a comfy seeming couch. There is also a door leading out of the apartment.");
            if(stairview == "open door"){
             alert("You walk out into another hallway, but this one is full of doors.  You are very obviously in an apartment complex, so you figure the rest of the doors will be locked.  You move downstairs.");
            MainOffice();
-    
-        //takes money out of account 
-               inventory.coins = inventory.coins - 100; inventory.coins -=100; alert("you have " +inventory.coins+"coins remaining"); 
         }
         
         if(stairview == "look at table" || stairview == "table"){
@@ -146,10 +166,10 @@ function Game(){
             KitchenRoom();
         }
         if(stairview == "take key" || stairview == "key"){
-            var keyTake =confirm("you take the key.  It seems to belong to inside this apartment.");
+            var keyTake = confirm("you take the key.  It seems to belong to inside this apartment.");
             if(keyTake){
         //adds key
-            inventory.keys ++; 
+            inventory.key ++; 
                 //displays keys taken
            alert("you own " +inventory.key+" keys"); 
            KitchenRoom();
@@ -169,9 +189,9 @@ function Game(){
     }
  
     function MainOffice(){
-        var downstairs = prompt("This must be the lobby and main offices of this building, but it has been visiably upturned and most likely robbed.  There is a snack bar in the corner. You luckily find some snacks and realize how hungry you are.  You decide the best idea is to eat them. After all, any food is free food if no one sees you take it.");
+        var downstairs = prompt("This must be the lobby and main offices of this building, but it has been visiably upturned and most likely robbed.");
         switch(downstairs){
-            case "look"|| "look around":
+            case "look around":
             alert("It's a lobby.  There is a door leading outside to your right, and a door labeled *pool* to your left.");
             MainOffice();
         break;
@@ -180,6 +200,10 @@ function Game(){
             break;
             case "go left":
             PoolRoom();
+            break;
+            default:
+            alert("I do not understand " + downstairs);
+                        MainOffice();
         }
     }
     function PoolRoom(){
@@ -192,25 +216,45 @@ function Game(){
         if(pool == "go back"){
             MainOffice();
         }
+        else{
+            alert("i don't understand"+pool);
+            PoolRoom();
+        }
     }
     function Outside(){
         var street = prompt("You step outside into a desolate and deserted street.  There is a hint of a different smell in the air, but you can't seem to place it.  Where is everyone?");
-        if(street == "look around"|| "look"){
-            alert("That smell is here, but you dont know what its from.  It's not awfully familliar. The street goes right to left, but there is also a dark alleyway in front of you.  /-forward /-backward");
-        }
-        if(street == "right"){
+        switch(street){
+        case"look around"|| "look":
+            alert("That smell is here, but you dont know what its from.  It's not awfully familliar. The street goes right to left, but there is also a dark alleyway in front of you.  /-forward /-backward /-right /-left");
+            Outside();
+        break;
+            case "right":
             alert("You walk down the street, only to find a police blockade.  You get the feeling it would be unwise to go past it, so you dont.");
-        }
-        if(street == "left"){
+            Outside();
+        break;
+            case "left":
             alert("You turn left and walk down the street.  Suddenly, you hear rustling and voices. *Hello.  Who are you?* one of the voices asks and cocks a gun behind your head.  Other people crawl out from behind cars and walk out of buildings.  As much as it is relieving to see all these alive people, they are still holding a gun to your head.  *What do you think y'all? Should we take this one in?* The one hoding the gun says. The rest of this group stays silent. *I'll take that as a yes then.  I'm going to need you to answer a couple questions, newcomer.*");
             Questioning();
+        break;
+            case "forward"||"go forward":
+            var firstfight = prompt("The smell increases and it's not a smell one enjoys.  It comes to a point where the smell is so rancid you almost feel like you can't breathe. As your eyes adjust to the darkness, you finally identify what the smell is.                                  Rotting Flesh.   In front of you, horrifyingly, is a dead body.  That is moving.  Towards you.");
+            Fight();
+        break;
+            default:
+            alert("i don't understand"+street);
+            Outside();
         }
-        
-        if(street == "forward"||"go forward"){
-            var firstfight = prompt("The smell increases and it's not a smell one enjoys.  It comes to a point where the smell is so rancid you almost feel like you can't breathe. As your eyes adjust to the darkness, you finally identify what the smell is.                                       Rotting Flesh.   In front of you, horrifyingly, is a dead body.  That is moving.  Towards you.");
-            //work on fight script
         }
+    /*function Fight(){
+        var damage = ["20","20","20","25"];
+        var attack = prompt("What would you like to do? /-attack with bat /-run away")
+        if (attack == "attack with bat"){
+            alert("you hurt the enemy for" +responses[Math.floor(Math.random()* 4)] +"damage");
         }
+        if (attack == "run away"){
+            alert("You run away with your tail between your legs like the coward you are.  Running away will not solve all your problems.")
+        }
+    }*/
    function Questioning(){
        prompt("Do you know who you are?");
        prompt("Are you a liar?");
@@ -230,7 +274,7 @@ function Game(){
     function Crew(){
        var nameAsk = prompt("You seemed to have pleased the leader.  Guess that means you are with them now? “You seem like you can handle yourself.  Welcome to the crew friend, what do we call call you?” The leader extends a hand to you.");
         alert("Good to meet ya "+nameAsk+".")
-        alert("You walk with the leader to a car that is still functioning unlike the others you have seen. There is actually a couple cars that everybody seems to be getting in to.They drive a while away from the city, attracting a couple zombies after them, but none of the zombies move fast enough to catch up to the car.  The journey comes to an end as they stop at a heavily barracaded building, full of anything you would need to stop a horde of zombies from invading.");
+        alert("You walk with the leader to a car that is still functioning unlike the others you have seen. There is actually a couple cars that everybody seems to be getting in to.They drive a while away from the city, attracting a couple of... things after them, but none of them move fast enough to catch up to the car.  The journey comes to an end as they stop at a heavily barracaded building, full of anything you would need to stop a horde of zombies from invading.");
         alert("They shove you into a room upstairs, and say “Rest up and we will do introductions tomorrow.  And explain everything.”");
         Hideout();
     }
@@ -290,4 +334,3 @@ function Game(){
         
     }
 }
-
