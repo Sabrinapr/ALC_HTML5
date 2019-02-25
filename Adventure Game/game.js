@@ -404,7 +404,7 @@ function Game(){
     function Kitchenv2(){
         var buUN = prompt("You go downstairs. It looks very much like the apartment you woke up in last time.  But this time it's filled with life.  The crew aparently woke up early.  and made pancakes.  which they are eating without you.  The gasmasked individual turns to you and beckons you into the kitchen.  “Join us," + nameAsk+".  It's time you learned a little about what happened and who we are.” Somebody wearing a pig mask slides you a plate of pancakes. “The impossible happened.  Somebody on the government allowed their scientist to experiment with diseases in their underground lab.  So the upper world has been inflicted with the disease and there is a huge, growing population of undead, rotting folks.  So we are trying to survive and honestly make a profit off the living and the abandoned.  There are still many living groups of people, suprisingly.  They run underground cities that trade resources and pay people like us to grab what we can of what's left of civilization.  So,  would you like to join us?”");
         if(buUN == "yes"){
-            alert("The gas mask hands you a mask.  It's a bunny mask, with a HAZARD symbol on the forehead.“This is the bunny mask.  It stands for not only someone who is willing to sacrifice, but someone who is clever.” The gas mask tells you. “Now that you have a mask, are you ready to go on your first gathering mission?”");
+            alert("The gas mask hands you a mask.  It's a bunny mask, with a HAZARD symbol on the forehead.“This is the bunny mask.  It stands for not only someone who is willing to sacrifice, but someone who is clever.” The gas mask tells you. “Now that you have a mask, are you ready to go on your first mission?  After pancakes of course.”");
             MissionStart();
         }
         if(buUN == "no"){
@@ -413,9 +413,34 @@ function Game(){
         }
     }
     function Confrontation(){
-        var findout = prompt("“Good morning new recruit.” someone says as they shake you awake. “What are you wearing?” You turn in the bed to see the gasmask in front of your face.  Which causes you to jump a little bit.  It's not a pleasant sight to wake up too.“How did you get that mask?”");
+        var findout = prompt("“Good morning new recruit.” someone says as they shake you awake. “What are you wearing?” You turn in the bed to see the gasmask in front of your face.  Which causes you to jump a little bit.  It's not a pleasant sight to wake up too. “How did you get that mask?” -lie -tell the truth");
+        if(findout == "lie"){
+        confirm("You ramble off some lie about finding it in your room.  You don't know how, but the mask even looks dissapointed of you.  “Both you and I know that isn't true. You gotta get better at lying if you're gonna run with us.   That mask you have on is the Jackdaw mask. It was reserved for someone who is intelligent and curious.  Jackdaws are also opportunistic feeders, which seems to fit you. I dont know how you go this mask, but you seem to fit the discription.  Now you have a mask however, you have to join the crew.  You in?” ");
+            if(resume){
+                alert("You nod.  “Good.  We have pancakes downstairs, lets go eat before we send you on your first mission.”");
+                MissionStart();
+            }
+            else{
+                alert("The gasmasked person lifts you out of bed, saying, “That's really too bad.  You had potential.” They then stab you. Right in the gut.“Try not to get blood on the bed. Its the least you can do after you refused our offer.” ");
+                Killed();
+            }
+        }
+        if(findout == "tell the truth"){
+            confirm("You tell the gasmask about how you got into the room.  “How did you know the code?  Who told you it?” They asked you.  You have no idea. “Alright. Whatever, you don't have to tell us. Seeing as you are clever however, let me tell you a little about that mask.That mask you have on is the Jackdaw mask. It was reserved for someone who is intelligent and curious.  Jackdaw's are also opportunistic feeders, which seems to fit you. I dont know how you go this mask, but you seem to fit the discription.  Now you have a mask however, you have to join the crew.  You in?”");            
+            if(resume){
+                alert("You nod.  “Good.  We have pancakes downstairs, lets go eat before we send you on your first mission.”");
+                MissionStart();
+            }
+            else{
+                alert("The gasmasked person lifts you out of bed, saying, “That's really too bad.  You had potential.” They then stab you. Right in the gut.“Try not to get blood on the bed. Its the least you can do after you refused our offer.” ");
+                Killed();
+            }
+        }
     }
     function MissionStart(){
-        var letgo
+        var pacakakes = prompt("You finish eating your pancakes. They where suprisingly amazing for being made in the middle of a zombie apocalypse.  “” ")
+    }
+    function Market(){
+        
     }
 }
