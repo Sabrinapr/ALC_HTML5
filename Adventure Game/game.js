@@ -24,7 +24,8 @@ multiline comment
 var inventory = {
                 key:0,
                 bat:0,
-                money:0,
+                money:100,
+                bullets:0,
             }
  var weakZombie = {
                 health:20,
@@ -43,9 +44,14 @@ function Game(){
     
     document.write("Inflicted");
     var playerName = prompt("What is your name?");
-    alert("Welcome to the City, " + playerName +".");
+    
+    while(!confirm("Are you sure you want "+playerName+" as a name?")){
+		playerName = prompt("What name do you want?");
+		
+}
+     alert("Welcome to the City, " + playerName +".");
    
-    Apartment();
+    Market();
     
     function Apartment(){
         var bedroom1 = prompt("You wake up... Your head is pounding, but you are lying on something comfortable. It takes a couple minutes of tossing and turning, but eventually you decide that you can't go back to sleep. You open your eyes.  Who's room is this? /n -look around /n -go back to bed").toLowerCase();
@@ -245,7 +251,7 @@ function Game(){
             Outside();
         }
         }
-    /*function Fight(){
+   /* function Fight(){
         var damage = ["20","20","20","25"];
         var attack = prompt("What would you like to do? /-attack with bat /-run away")
         if (attack == "attack with bat"){
@@ -291,6 +297,10 @@ function Game(){
             alert("You decide to wait till they all fall asleep to explore. After about an hour you decide you are safe to explore.")
             Hallwayv1();
         }
+        else{
+			alert("I dont know what "+maskPick+" is.");
+			Hideout();
+}
     }
     function Hallwayv1(){
         var way = prompt("The hallway has 2 other doors to the left, the right, and in front stairs leading downstairs.");
@@ -331,8 +341,12 @@ function Game(){
             }
         break;
         case "take masks":
-        alert("an alarm goes off.");
+        alert("an alarm goes off.  The crew rushes in guns a blazing on you before you can even say anything.");
         Killed();
+        break;
+        default:
+                alert("I do not understand " +lazars);
+                        Traproom();
     }
     }
     function Traproomv2(){
@@ -347,6 +361,10 @@ function Game(){
             alert("You return to your room. But for some reason, you didn't want to take the bird mask off.  It seemed to... speak to you?  You had no idea.  You just had no will to take it off.");
             Confrontation();
         }
+        else{
+			alert("I dont know what "+masks+" is!");
+			Traproomv2();
+}
     }
     function Killed(){
         alert("You have been killed by your own stupidity.  Try again?")
@@ -370,7 +388,7 @@ function Game(){
                 Kitchenv2();
                 break;
             default:
-                alert("I do not understand " + receive);
+                alert("I do not understand "+receive);
                         Bunny();
         }
     }
@@ -399,6 +417,10 @@ function Game(){
                 break;
             case "backwards" || "go back":
                 Hallwayv1();
+                break;
+            default:
+                alert("I do not understand "+keeeeyss);
+                        Kitchen();
         }
     }
     function Kitchenv2(){
@@ -411,6 +433,10 @@ function Game(){
             alert("“That was not the correct response.” You can hear the person behind the gasmask smiling. They stick a knife in your gut. “And you had so much potential.”");
             Killed();
         }
+        else{
+			alert("I dont know what "+buUn+" is!");
+			Kitchenv2();
+}
     }
     function Confrontation(){
         var findout = prompt("“Good morning new recruit.” someone says as they shake you awake. “What are you wearing?” You turn in the bed to see the gasmask in front of your face.  Which causes you to jump a little bit.  It's not a pleasant sight to wake up too. “How did you get that mask?” -lie -tell the truth");
@@ -438,9 +464,34 @@ function Game(){
         }
     }
     function MissionStart(){
-        var pacakakes = prompt("You finish eating your pancakes. They where suprisingly amazing for being made in the middle of a zombie apocalypse.  “” ")
+        var pacakakes = prompt("You finish eating your pancakes. They where suprisingly amazing for being made in the middle of a zombie apocalypse.  “Alright, we have to go on a mission to the next town over.  This town is pretty well inhabited, and runs underground.  They got a market though, so those of you who we take can get some supplies.  Just remember, we wanna stay on these folks good side, we want them to hire us.” The gasmask debriefs everyone and then drags you back to the car you got into at the start. ")
     }
     function Market(){
-        
-    }
+		var bulletShop = 100;
+		var bulletPrice = 5;
+        var foodShop = 20;
+        var foodPrice = 20;
+		
+		
+		var purchase = prompt("A greasy man glares at you. “What do you want?” \n- bullets:"+bulletShop).toLowerCase();
+		
+		if(purchase == "bullets" || purchase == "bullet"){
+			var bulletCon = prompt("How many?");
+			
+			while(!confirm("Are you sure you want to purchase "+bulletCon+" bullets, for "+bulletPrice+" per bullet?")){
+				bulletCon = prompt("How many bullets do you want?");
+			}
+			
+			for(i = 1; i <= bulletCon; i++){
+				inventory.bullets ++;
+				console.log("You have "+inventory.bullets+" bullets");				
+			}
+			alert("You have purchased "+bulletCon+" bullets.");
+			Market();			
+		}
+		else if(purchase == "exit"|| purchase == "leave"){
+					Prison();
+				}
+		
+} 
 }
